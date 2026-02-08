@@ -5,7 +5,7 @@ import { FiPlus, FiDownload, FiX, FiCamera } from 'react-icons/fi';
 // --- CONFIGURACIÓN ---
 const CLOUD_NAME = 'drbzyhoss'; // ¡PON TU CLOUD NAME AQUÍ!
 const UPLOAD_PRESET = 'vsco_guest';
-const TAG_NAME = 'album_boda';
+const TAG_NAME = 'album_quinces';
 
 function App() {
   const [media, setMedia] = useState([]);
