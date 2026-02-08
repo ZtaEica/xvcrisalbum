@@ -113,7 +113,8 @@ body {
 
 .masonry-grid {
   column-count: 2;
-  column-gap: 35px;
+  column-gap: 40px; /* ANTES: 35px -> AHORA: 40px o 50px si es necesario */
+  padding: 10px; /* Agregamos un poco de padding interno */
 }
 
 @media (min-width: 768px) {
@@ -129,16 +130,18 @@ body {
 }
 
 /* --- FOTO TIPO POLAROID GLAM --- */
+/* FOTO TIPO POLAROID GLAM */
 .photo-item {
   break-inside: avoid;
   margin-bottom: 45px;
   background-color: var(--polaroid-bg);
-  padding: 10px 10px 50px 10px;
+  /* Padding normal para que parezca una polaroid estándar */
+  padding: 25px 12px 50px 12px;
   box-shadow: var(--shadow-soft);
   position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
-  border-radius: 4px;
-  border: 1px solid #eee;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 3px;
+  border: 1px solid #f0f0f0;
 }
 
 /* Rotación aleatoria suave */
@@ -154,32 +157,36 @@ body {
 }
 
 /* Hover: Se endereza y brilla */
+/* El hover DEBE tener un z-index muy alto para que al tocarla sobresalga de todo */
 .photo-item:hover {
   transform: scale(1.08) rotate(0deg) !important;
-  z-index: 20;
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25);
+  z-index: 100 !important; /* Forzamos que esté encima de todo */
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
 }
 
-/* CINTA ADHESIVA (Ahora es cinta Glitter/Metálica) */
 .photo-item::before {
   content: '';
   position: absolute;
-  top: -12px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 90px;
-  height: 25px;
-  /* Degradado metálico rose gold */
-  background: linear-gradient(45deg, #e6c9a8, #d4af37, #e6c9a8);
-  opacity: 0.8;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 5;
-  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #fff5e6,
+    #d4af37 50%,
+    #a68224 100%
+  );
+  box-shadow: 1px 2px 3px rgba(90, 74, 66, 0.4);
+  z-index: 10;
+  border: 1px solid rgba(166, 130, 36, 0.3);
 }
 
 /* DETALLE XV AÑOS (Corona o Mariposa) */
 .photo-item::after {
-  content: '👑'; /* CAMBIO: Usamos una corona. Opciones: 🦋, ✨, 💖 */
+  content: '👑';
   position: absolute;
   bottom: 10px;
   right: 15px;
