@@ -77,7 +77,7 @@ function App() {
         <h1>El Álbum de mi Fiesta</h1>
         <p>
           ¡Gracias por acompañarme! Sube aquí tus fotos y videos favoritos de
-          esta noche mágica ✨.
+          esta tarde mágica ✨.
         </p>
       </section>
 
