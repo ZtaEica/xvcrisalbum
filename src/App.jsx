@@ -63,7 +63,7 @@ function App() {
     <div className="app">
       {/* HEADER FLOTANTE */}
       <header className="header">
-        <div className="logo">XV CRISTIANA - MOMENTOS</div>
+        <div className="logo">ÁLBUM XV CRISTIANA</div>
         <button
           className="upload-btn"
           onClick={handleUpload}

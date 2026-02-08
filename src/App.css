@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;700&display=swap');
 
 :root {
-  --bg-color: #fafafa;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666;
-  --accent: #000;
+  --bg-color: #fffdfd;
+  --text-primary: #2d1b21;
+  --text-secondary: #8c767d;
+  --accent: #d4889e;
   --glass: rgba(255, 255, 255, 0.85);
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-soft: 0 4px 20px rgba(212, 136, 158, 0.15);
 }
 
 * {
