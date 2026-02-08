@@ -63,7 +63,7 @@ function App() {
     <div className="app">
       {/* HEADER FLOTANTE */}
       <header className="header">
-        <div className="logo">ÁLBUM XV CRISTIANA</div>
+        <div className="logo">XV CRISTIANA</div>
         <button
           className="upload-btn"
           onClick={handleUpload}
@@ -74,10 +74,10 @@ function App() {
 
       {/* HERO / TÍTULO */}
       <section className="hero">
-        <h1>Galería del Evento</h1>
+        <h1>El Álbum de mi Fiesta</h1>
         <p>
-          Comparte tus mejores momentos con nosotros. Las fotos se subirán
-          automáticamente aquí.
+          ¡Gracias por acompañarme! Sube aquí tus fotos y videos favoritos de
+          esta noche mágica ✨.
         </p>
       </section>
 

@@ -1,108 +1,119 @@
-/* IMPORTAR FUENTES (Google Fonts) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;700&display=swap');
+/* Mantenemos las fuentes manuscritas, ¡funcionan perfecto! */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&family=Quicksand:wght@400;600&display=swap');
 
 :root {
-  --bg-color: #fffdfd;
-  --text-primary: #2d1b21;
-  --text-secondary: #8c767d;
-  --accent: #d4889e;
-  --glass: rgba(255, 255, 255, 0.85);
-  --shadow-soft: 0 4px 20px rgba(212, 136, 158, 0.15);
+  /* NUEVA PALETA DE COLORES XV AÑOS */
+  --primary-rose: #d4af37; /* Un tono dorado/rose gold elegante */
+  --secondary-pink: #ffd1dc; /* Rosa pastel suave */
+  --bg-crema: #fffcfc;
+  --polaroid-bg: #ffffff;
+  --shadow-soft: 0 10px 25px rgba(212, 175, 55, 0.15); /* Sombra dorada suave */
+  --text-dark: #5a4a42;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background-color: var(--bg-color);
-  font-family: 'Inter', sans-serif;
-  color: var(--text-primary);
+  background-color: var(--bg-crema);
+  /* Patrón de fondo más sutil y rosado, como polvo de hadas */
+  background-image: radial-gradient(var(--secondary-pink) 10%, transparent 11%),
+    radial-gradient(var(--secondary-pink) 10%, transparent 11%);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+
+  font-family: 'Quicksand', sans-serif;
+  color: var(--text-dark);
   overflow-x: hidden;
 }
 
-/* --- HEADER GLASSMORPHISM --- */
+/* --- HEADER GLAMUROSO --- */
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  z-index: 100;
+  /* Borde inferior dorado brillante */
+  border-bottom: 2px solid var(--primary-rose);
+  box-shadow: 0 2px 15px rgba(212, 175, 55, 0.1);
 }
 
 .logo {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  /* Degradado de texto efecto oro rosado */
+  background: linear-gradient(to right, #d4af37, #b48811);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 700;
-  letter-spacing: 1.5px;
-  font-size: 1rem;
-  text-transform: uppercase;
 }
 
 .upload-btn {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  background-color: var(--secondary-pink);
+  color: var(--text-dark);
+  border: 2px solid var(--primary-rose);
+  padding: 8px 20px;
+  border-radius: 30px; /* Más redondeado y elegante */
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  /* Sombra brillante */
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 8px;
+}
+
+.upload-btn:hover {
+  background-color: var(--primary-rose);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .upload-btn:active {
   transform: scale(0.95);
 }
 
-/* --- HERO SECTION --- */
+/* --- HERO --- */
 .hero {
-  padding: 120px 20px 40px;
+  padding: 50px 20px;
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .hero h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  margin-bottom: 10px;
-  letter-spacing: -0.5px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: var(--primary-rose);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .hero p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  color: #888;
 }
 
-/* --- MASONRY GRID --- */
+/* --- GRID ÁLBUM --- */
 .gallery-container {
-  padding: 0 16px 40px;
-  max-width: 1400px;
+  padding: 30px 20px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .masonry-grid {
   column-count: 2;
-  column-gap: 16px;
+  column-gap: 35px;
 }
 
 @media (min-width: 768px) {
@@ -117,21 +128,65 @@ body {
   }
 }
 
+/* --- FOTO TIPO POLAROID GLAM --- */
 .photo-item {
   break-inside: avoid;
-  margin-bottom: 16px;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #eee; /* Placeholder color */
-  cursor: zoom-in;
-  animation: fadeIn 0.6s ease-out forwards;
+  margin-bottom: 45px;
+  background-color: var(--polaroid-bg);
+  padding: 10px 10px 50px 10px;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+  border-radius: 4px;
+  border: 1px solid #eee;
 }
 
+/* Rotación aleatoria suave */
+.photo-item:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+.photo-item:nth-child(even) {
+  transform: rotate(2deg);
+}
+.photo-item:nth-child(3n) {
+  transform: rotate(3deg);
+  margin-top: 15px;
+}
+
+/* Hover: Se endereza y brilla */
 .photo-item:hover {
-  transform: translateY(-2px);
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 20;
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25);
+}
+
+/* CINTA ADHESIVA (Ahora es cinta Glitter/Metálica) */
+.photo-item::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 25px;
+  /* Degradado metálico rose gold */
+  background: linear-gradient(45deg, #e6c9a8, #d4af37, #e6c9a8);
+  opacity: 0.8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  border-radius: 2px;
+}
+
+/* DETALLE XV AÑOS (Corona o Mariposa) */
+.photo-item::after {
+  content: '👑'; /* CAMBIO: Usamos una corona. Opciones: 🦋, ✨, 💖 */
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  opacity: 0.7;
+  /* Pequeña animación de brillo */
+  filter: drop-shadow(0 0 5px gold);
 }
 
 .photo-item img,
@@ -139,77 +194,67 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
+  border-radius: 2px;
+  /* Quitamos el filtro sepia, ahora las fotos deben verse vibrantes */
+  filter: brightness(1.05) contrast(1.02);
 }
 
-/* Animación de entrada */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Overlay de descarga (Botón flotante en la foto) */
+/* BOTÓN DE DESCARGA */
 .download-badge {
   position: absolute;
   bottom: 12px;
-  right: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  text-decoration: none;
-  backdrop-filter: blur(4px);
-  opacity: 0.8;
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 10;
+  left: 15px;
+  color: var(--primary-rose); /* Color dorado */
+  font-size: 1.3rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
-.download-badge:active {
-  transform: scale(0.9);
+.download-badge:hover {
+  opacity: 1;
 }
 
-/* --- LIGHTBOX (MODAL PANTALLA COMPLETA) --- */
+/* --- LIGHTBOX --- */
 .lightbox-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(90, 74, 66, 0.95); /* Fondo oscuro cálido */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  animation: fadeIn 0.2s ease;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
 }
 
 .lightbox-content {
-  max-width: 95%;
-  max-height: 90vh;
-  object-fit: contain;
+  max-width: 90%;
+  max-height: 85vh;
+  border: 10px solid #fff;
+  border-bottom: 50px solid #fff;
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.3); /* Resplandor dorado */
   border-radius: 4px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
+  top: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   border: none;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  z-index: 2001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
