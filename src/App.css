@@ -56,22 +56,51 @@ body {
   font-weight: 700;
 }
 
+/* Contenedor para alinear los dos botones */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre botones */
+}
+
+/* El nuevo botón redondo de cámara */
+.camera-btn {
+  background-color: #fff; /* Fondo blanco */
+  color: var(--primary-rose); /* Icono dorado/rosa */
+  border: 2px solid var(--primary-rose);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; /* Redondo perfecto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.camera-btn:active {
+  transform: scale(0.9);
+  background-color: var(--primary-rose);
+  color: #fff;
+}
+
 .upload-btn {
   background-color: var(--secondary-pink);
   color: var(--text-dark);
   border: 2px solid var(--primary-rose);
   padding: 8px 20px;
-  border-radius: 30px; /* Más redondeado y elegante */
+  border-radius: 30px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
-  /* Sombra brillante */
   box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 8px;
+  display: flex;
 }
 
 .upload-btn:hover {
@@ -128,7 +157,7 @@ body {
 
 /* --- GRID ÁLBUM --- */
 .gallery-container {
-  padding: 30px 20px;
+  padding: 0 20px 30px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }

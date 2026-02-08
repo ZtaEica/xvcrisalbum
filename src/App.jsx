@@ -1,20 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
-import { FiPlus, FiDownload, FiX, FiCamera, FiLoader } from 'react-icons/fi';
+import {
+  FiPlus,
+  FiDownload,
+  FiX,
+  FiCamera,
+  FiLoader,
+  FiImage,
+} from 'react-icons/fi';
 
-// --- CONFIGURACIÓN ---
-const CLOUD_NAME = 'drbzyhoss'; // <--- ¡PON TU CLOUD NAME AQUÍ!
-const UPLOAD_PRESET = 'vsco_guest'; // <--- ¡ASEGÚRATE QUE SEA EL MISMO DE CLOUDINARY!
+const CLOUD_NAME = 'drbzyhoss';
+const UPLOAD_PRESET = 'vsco_guest';
 const TAG_NAME = 'album_quinces';
 
 function App() {
   const [media, setMedia] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [uploading, setUploading] = useState(false); // Estado para saber si está subiendo
+  const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Referencia al input oculto
-  const fileInputRef = useRef(null);
+  // DOS REFERENCIAS: Una para galería, una para cámara
+  const galleryInputRef = useRef(null);
+  const cameraInputRef = useRef(null);
 
   const fetchMedia = async () => {
     try {
@@ -35,35 +42,36 @@ function App() {
     fetchMedia();
   }, []);
 
-  // 1. AL HACER CLIC EN EL BOTÓN "SUBIR", ABRIMOS EL SELECTOR DE ARCHIVOS OCULTO
-  const handleUploadClick = () => {
-    fileInputRef.current.click();
+  // CLIC EN BOTÓN GALERÍA
+  const handleGalleryClick = () => {
+    galleryInputRef.current.click();
   };
 
-  // 2. CUANDO EL USUARIO ELIGE UNA FOTO
+  // CLIC EN BOTÓN CÁMARA
+  const handleCameraClick = () => {
+    cameraInputRef.current.click();
+  };
+
+  // PROCESAR ARCHIVO (Sirve para ambos inputs)
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    setUploading(true); // Activamos el spinner de carga
+    setUploading(true);
 
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', UPLOAD_PRESET);
-    formData.append('tags', TAG_NAME); // Importante para que aparezca en la lista
+    formData.append('tags', TAG_NAME);
 
     try {
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`,
-        {
-          method: 'POST',
-          body: formData,
-        }
+        { method: 'POST', body: formData }
       );
       const data = await res.json();
       console.log('Subida exitosa:', data);
 
-      // Recargamos la galería después de 2 segundos
       setTimeout(() => {
         fetchMedia();
         setUploading(false);
@@ -71,48 +79,71 @@ function App() {
     } catch (error) {
       console.error('Error subiendo:', error);
       setUploading(false);
-      alert('Hubo un error al subir la foto. Intenta de nuevo.');
+      alert('Error al subir. Intenta de nuevo.');
     }
   };
 
   return (
     <div className="app">
-      {/* Input oculto (el truco) */}
+      {/* INPUT 1: GALERÍA (Permite fotos y videos) */}
       <input
         type="file"
-        ref={fileInputRef}
+        ref={galleryInputRef}
         onChange={handleFileChange}
         style={{ display: 'none' }}
         accept="image/*,video/*"
       />
 
+      {/* INPUT 2: CÁMARA (Fuerza la cámara trasera) */}
+      <input
+        type="file"
+        ref={cameraInputRef}
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+        accept="image/*"
+        capture="environment"
+      />
+
       <header className="header">
         <div className="logo">Mis XV Años</div>
 
-        {/* Botón Personalizado */}
-        <button
-          className="upload-btn"
-          onClick={handleUploadClick}
-          disabled={uploading} // Desactivar si ya está subiendo
-        >
-          {uploading ? (
-            <>
-              Subiendo... <FiLoader className="spin-anim" />
-            </>
-          ) : (
-            <>
-              <FiPlus size={16} /> SUBIR FOTO
-            </>
-          )}
-        </button>
+        <div className="header-actions">
+          {/* BOTÓN CÁMARA RAPIDA */}
+          <button
+            className="camera-btn"
+            onClick={handleCameraClick}
+            disabled={uploading}
+            title="Tomar Foto"
+          >
+            <FiCamera size={22} />
+          </button>
+
+          {/* BOTÓN GALERÍA */}
+          <button
+            className="upload-btn"
+            onClick={handleGalleryClick}
+            disabled={uploading}
+          >
+            {uploading ? (
+              <FiLoader className="spin-anim" />
+            ) : (
+              <>
+                <FiImage size={18} /> SUBIR
+              </>
+            )}
+          </button>
+        </div>
       </header>
 
       <section className="hero">
         <h1>El Álbum de mi Fiesta</h1>
-        <p>¡Gracias por acompañarme! Sube aquí tus fotos ✨.</p>
+        <p>
+          ¡Gracias por acompañarme! Sube aquí tus fotos favoritas de esta tarde
+          mágica ✨.
+        </p>
       </section>
 
-      {/* GALERÍA */}
+      {/* GALERÍA (Mismo código de antes) */}
       <div className="gallery-container">
         {loading ? (
           <div style={{ textAlign: 'center', marginTop: 40, opacity: 0.5 }}>
@@ -141,7 +172,6 @@ function App() {
                     loading="lazy"
                   />
                 )}
-
                 <a
                   href={`https://res.cloudinary.com/${CLOUD_NAME}/image/upload/fl_attachment/${item.public_id}.${item.format}`}
                   className="download-badge"
@@ -154,20 +184,9 @@ function App() {
             ))}
           </div>
         )}
-
-        {!loading && media.length === 0 && (
-          <div style={{ textAlign: 'center', padding: 80, color: '#aaa' }}>
-            <FiCamera
-              size={48}
-              style={{ marginBottom: 20 }}
-            />
-            <p>Aún no hay recuerdos.</p>
-            <p style={{ fontSize: '0.9rem' }}>¡Sé el primero en compartir!</p>
-          </div>
-        )}
       </div>
 
-      {/* LIGHTBOX */}
+      {/* LIGHTBOX (Mismo código de antes) */}
       {selectedImage && (
         <div
           className="lightbox-overlay"
